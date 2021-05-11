@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataTemplate x:Key="dt_lbx">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding GameImage}" Width="100" Height="100" />
+                <TextBlock Height="20" FontSize="18" Text="{Binding CriticScore}" Background="LawnGreen" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
@@ -22,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <ComboBox SelectionChanged="filterBox_SelectionChanged" x:Name="filterBox" Grid.Row="0" />
-        <ListBox SelectionChanged="lbx_games_SelectionChanged" x:Name="lbx_games" Grid.Row="2" />
+        <ListBox Grid.RowSpan="2" ItemTemplate="{StaticResource ResourceKey=dt_lbx}" SelectionChanged="lbx_games_SelectionChanged" x:Name="lbx_games" Grid.Row="2" />
 
         <TextBlock FontSize="18" Grid.Row="0" Grid.Column="2" x:Name="tblk_gamePrice" />
         <TextBlock FontSize="20" Grid.Row="2" Grid.Column="2" x:Name="tblk_name" />
