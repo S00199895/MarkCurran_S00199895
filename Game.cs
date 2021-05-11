@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarkCurran_S00199895
 {
-	class Game
+	public class Game
 	{
 		public string Name { get; set; }
 		public int CriticScore { get; set; }
