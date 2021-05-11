@@ -33,5 +33,17 @@ namespace MarkCurran_S00199895
 						select g;
 			lbx_games.ItemsSource = query.ToList();
 		}
+
+		private void lbx_games_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Game selectedGame = lbx_games.SelectedItem as Game;
+
+			if (selectedGame != null)
+			{
+				tblk_gamePrice.Text = $"{selectedGame.Price:C}";
+				tblk_name.Text = selectedGame.Name;
+				tblk_desc.Text = selectedGame.Description;
+			}
+		}
 	}
 }
