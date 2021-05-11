@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:MarkCurran_S00199895"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        Loaded="Window_Loaded">
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="dt_lbx">
             <StackPanel Orientation="Horizontal">
