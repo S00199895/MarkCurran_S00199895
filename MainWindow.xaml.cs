@@ -24,14 +24,24 @@ namespace MarkCurran_S00199895
 		{
 			InitializeComponent();
 		}
-
+		GameData db = new GameData();
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			GameData db = new GameData();
+			
 
 			var query = from g in db.Games
 						select g;
 			lbx_games.ItemsSource = query.ToList();
+
+			string[] filters =
+			{
+				"PC, Xbox, PS, Switch",
+				"Xbox",
+				"PS",
+				"Switch"
+			};
+
+			filterBox.ItemsSource = filters;
 		}
 
 		private void lbx_games_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -43,6 +53,20 @@ namespace MarkCurran_S00199895
 				tblk_gamePrice.Text = $"{selectedGame.Price:C}";
 				tblk_name.Text = selectedGame.Name;
 				tblk_desc.Text = selectedGame.Description;
+			}
+		}
+
+		private void filterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			string selectedOption = filterBox.SelectedItem as string;
+
+			if (selectedOption != null)
+			{
+				var query = from g in db.Games
+							where g.Platform == selectedOption
+							select g;
+
+				lbx_games.ItemsSource = query.ToList();
 			}
 		}
 	}

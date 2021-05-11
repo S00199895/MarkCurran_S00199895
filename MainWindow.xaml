@@ -21,7 +21,7 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
-        <ComboBox x:Name="filterBox" Grid.Row="0" />
+        <ComboBox SelectionChanged="filterBox_SelectionChanged" x:Name="filterBox" Grid.Row="0" />
         <ListBox SelectionChanged="lbx_games_SelectionChanged" x:Name="lbx_games" Grid.Row="2" />
 
         <TextBlock FontSize="18" Grid.Row="0" Grid.Column="2" x:Name="tblk_gamePrice" />
