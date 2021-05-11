@@ -9,16 +9,19 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     Loaded="Window_Loaded">
+    
     <Window.Resources>
         <DataTemplate x:Key="dt_lbx">
             <StackPanel Orientation="Horizontal">
                 <Image Source="{Binding GameImage}" Width="100" Height="100" />
-                <TextBlock Height="20" FontSize="18" Text="{Binding CriticScore}" Background="LawnGreen" />
+                <TextBlock Height="20" FontSize="18" Text="{Binding CriticScore}" Background="LightGreen" />
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!-- Column and row definitions -->
+            <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="3*" />
@@ -30,12 +33,14 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
+        
+        <!-- On the left side (Column 0) -->
+        <ComboBox Margin="5" SelectionChanged="filterBox_SelectionChanged" x:Name="filterBox" Grid.Row="0" />
+        <ListBox Margin="5" Grid.RowSpan="2" ItemTemplate="{StaticResource ResourceKey=dt_lbx}" SelectionChanged="lbx_games_SelectionChanged" x:Name="lbx_games" Grid.Row="2" />
 
-        <ComboBox SelectionChanged="filterBox_SelectionChanged" x:Name="filterBox" Grid.Row="0" />
-        <ListBox Grid.RowSpan="2" ItemTemplate="{StaticResource ResourceKey=dt_lbx}" SelectionChanged="lbx_games_SelectionChanged" x:Name="lbx_games" Grid.Row="2" />
-
-        <TextBlock FontSize="18" Grid.Row="0" Grid.Column="2" x:Name="tblk_gamePrice" />
-        <TextBlock FontSize="20" Grid.Row="2" Grid.Column="2" x:Name="tblk_name" />
-        <TextBlock FontSize="14" TextWrapping="Wrap" x:Name="tblk_desc" Grid.Column="2" Grid.Row="4" />
+        <!-- On the right side (Column 2) -->
+        <TextBlock Margin="5" FontSize="18" Grid.Row="0" Grid.Column="2" x:Name="tblk_gamePrice" />
+        <TextBlock Margin="5" FontWeight="Bold" FontSize="20" Grid.Row="2" Grid.Column="2" x:Name="tblk_name" />
+        <TextBlock Margin="10" Background="{DynamicResource MaterialDesignLightBackground}" FontSize="14" TextWrapping="Wrap" x:Name="tblk_desc" Grid.Column="2" Grid.Row="4" />
     </Grid>
 </Window>

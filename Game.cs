@@ -10,6 +10,7 @@ namespace MarkCurran_S00199895
 {
 	public class Game
 	{
+		//props
 		[Key]
 		public string Name { get; set; }
 		public int CriticScore { get; set; }
@@ -18,13 +19,15 @@ namespace MarkCurran_S00199895
 		public decimal Price { get; set; }
 		public string GameImage { get; set; }
 
+		//ctor
 		public Game()
 		{
 
 		}
-
+		//methods
 		public void DecreasePrice(decimal amount)
 		{
+			//Reduce the price by the amount argument
 			Price -= amount;
 		}
 
@@ -34,9 +37,11 @@ namespace MarkCurran_S00199895
 		}
 	}
 
+	//Creates the DB structure with the Entity Framework
 	public class GameData : DbContext
 	{
+		//The name of the database will be GameInfo
 		public GameData() : base("GameInfo") { }
-		public DbSet<Game> Games { get; set; }
+		public DbSet<Game> Games { get; set; } //The table will be called Games
 	}
 }

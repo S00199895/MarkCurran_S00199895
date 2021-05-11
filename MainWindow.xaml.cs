@@ -24,15 +24,16 @@ namespace MarkCurran_S00199895
 		{
 			InitializeComponent();
 		}
+		//Initalizing db for the xaml.cs
 		GameData db = new GameData();
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			
-
+			//select all games
 			var query = from g in db.Games
 						select g;
 			lbx_games.ItemsSource = query.ToList();
 
+			//setting the filters
 			string[] filters =
 			{
 				"PC, Xbox, PS, Switch",
@@ -50,6 +51,7 @@ namespace MarkCurran_S00199895
 
 			if (selectedGame != null)
 			{
+				//Set the text blocks to the selected game's info
 				tblk_gamePrice.Text = $"{selectedGame.Price:C}";
 				tblk_name.Text = selectedGame.Name;
 				tblk_desc.Text = selectedGame.Description;
@@ -62,6 +64,8 @@ namespace MarkCurran_S00199895
 
 			if (selectedOption != null)
 			{
+				//select only the games where Platform is the same as 
+				//the selcted platform
 				var query = from g in db.Games
 							where g.Platform == selectedOption
 							select g;
