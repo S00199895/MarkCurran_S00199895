@@ -32,17 +32,6 @@ namespace MarkCurran_S00199895
 			var query = from g in db.Games
 						select g;
 			lbx_games.ItemsSource = query.ToList();
-
-			//setting the filters
-			string[] filters =
-			{
-				"PC, Xbox, PS, Switch",
-				"Xbox",
-				"PS",
-				"Switch"
-			};
-
-			filterBox.ItemsSource = filters;
 		}
 
 		private void lbx_games_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,24 +41,40 @@ namespace MarkCurran_S00199895
 			if (selectedGame != null)
 			{
 				//Set the text blocks to the selected game's info
-				tblk_gamePrice.Text = $"{selectedGame.Price:C}";
-				tblk_name.Text = selectedGame.Name;
-				tblk_desc.Text = selectedGame.Description;
+				tblk_plat.Text = $"Platform: {selectedGame.Platform}";
+				tblk_price.Text = $"Price: {selectedGame.Price:C}";
+				tblk_desc.Text = $"Description: \\n{selectedGame.Description}";
 			}
 		}
 
-		private void filterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void RadioButton_Click(object sender, RoutedEventArgs e)
 		{
-			string selectedOption = filterBox.SelectedItem as string;
 
-			if (selectedOption != null)
+			if (btnAll.IsChecked == true)
 			{
-				//select only the games where Platform is the same as 
-				//the selcted platform
+				 var query = from g in db.Games
+						select g;
+				lbx_games.ItemsSource = query.ToList();
+			}
+			else if (btnXbox.IsChecked == true)
+			{
 				var query = from g in db.Games
-							where g.Platform == selectedOption
+							where g.Platform == "Xbox"
 							select g;
-
+				lbx_games.ItemsSource = query.ToList();
+			}
+			else if (btnPS.IsChecked == true)
+			{
+				var query = from g in db.Games
+							where g.Platform == "PS"
+							select g;
+				lbx_games.ItemsSource = query.ToList();
+			}
+			else if (btnSwitch.IsChecked == true)
+			{
+				var query = from g in db.Games
+							where g.Platform == "Switch"
+							select g;
 				lbx_games.ItemsSource = query.ToList();
 			}
 		}

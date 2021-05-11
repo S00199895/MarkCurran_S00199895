@@ -14,7 +14,8 @@
         <DataTemplate x:Key="dt_lbx">
             <StackPanel Orientation="Horizontal">
                 <Image Source="{Binding GameImage}" Width="100" Height="100" />
-                <TextBlock Height="20" FontSize="18" Text="{Binding CriticScore}" Background="LightGreen" />
+                <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Name}" />
+                <TextBlock Height="20" FontSize="16" Text="{Binding CriticScore}" Background="LightGreen" />
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
@@ -22,25 +23,32 @@
     <Grid>
         <!-- Column and row definitions -->
             <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         
         <!-- On the left side (Column 0) -->
-        <ComboBox Margin="5" SelectionChanged="filterBox_SelectionChanged" x:Name="filterBox" Grid.Row="0" />
-        <ListBox Margin="5" Grid.RowSpan="2" ItemTemplate="{StaticResource ResourceKey=dt_lbx}" SelectionChanged="lbx_games_SelectionChanged" x:Name="lbx_games" Grid.Row="2" />
+        <!-- <ComboBox Margin="5" SelectionChanged="filterBox_SelectionChanged" x:Name="filterBox" Grid.Row="0" /> -->
+        <StackPanel Grid.Row="0" Margin="5" Orientation="Vertical">
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <RadioButton x:Name="btnAll" Click="RadioButton_Click" Margin="5" Content="All" />
+                <RadioButton x:Name="btnXbox" Click="RadioButton_Click" Margin="5" Content="Xbox" />
+                <RadioButton x:Name="btnPS" Click="RadioButton_Click" Margin="5" Content="PS" />
+                <RadioButton x:Name="btnSwitch" Click="RadioButton_Click" Margin="5" Content="Switch" />
+            </StackPanel>
+        </StackPanel>
+        <ListBox ItemTemplate="{StaticResource dt_lbx}" Margin="5" SelectionChanged="lbx_games_SelectionChanged" Grid.Row="1" x:Name="lbx_games" />
 
         <!-- On the right side (Column 2) -->
-        <TextBlock Margin="5" FontSize="18" Grid.Row="0" Grid.Column="2" x:Name="tblk_gamePrice" />
-        <TextBlock Margin="5" FontWeight="Bold" FontSize="20" Grid.Row="2" Grid.Column="2" x:Name="tblk_name" />
-        <TextBlock Margin="10" Background="{DynamicResource MaterialDesignLightBackground}" FontSize="14" TextWrapping="Wrap" x:Name="tblk_desc" Grid.Column="2" Grid.Row="4" />
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <TextBlock Grid.Column="1" Grid.Row="2" x:Name="tblk_plat" Text="Platform: " Margin="10"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" x:Name="tblk_price" Text="Price: " Margin="10"/>
+            <TextBlock TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" x:Name="tblk_desc" Text="Description: \n" Margin="10"/>
+        </StackPanel>
     </Grid>
 </Window>
