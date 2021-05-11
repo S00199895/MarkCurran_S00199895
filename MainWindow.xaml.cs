@@ -27,7 +27,11 @@ namespace MarkCurran_S00199895
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
+			GameData db = new GameData();
 
+			var query = from g in db.Games
+						select g;
+			lbx_games.ItemsSource = query.ToList();
 		}
 	}
 }

@@ -27,6 +27,11 @@ namespace MarkCurran_S00199895
 		{
 			Price -= amount;
 		}
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 
 	public class GameData : DbContext
