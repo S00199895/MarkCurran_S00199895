@@ -24,5 +24,10 @@ namespace MarkCurran_S00199895
 		{
 			InitializeComponent();
 		}
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

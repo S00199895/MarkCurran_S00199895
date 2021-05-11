@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarkCurran_S00199895"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="filterBox" Grid.Row="0" />
+        <ListBox x:Name="lbx_games" Grid.Row="2" />
+
+        <TextBlock Grid.Row="0" Grid.Column="2" x:Name="tblk_gamePrice" />
+        <TextBlock Grid.Row="2" Grid.Column="2" x:Name="tblk_name" />
+        <TextBlock x:Name="tblk_desc" Grid.Column="2" Grid.Row="4" />
     </Grid>
 </Window>
