@@ -14,5 +14,15 @@ namespace MarkCurran_S00199895
 		public string Platform { get; set; }
 		public decimal Price { get; set; }
 		public string GameImage { get; set; }
+
+		public Game()
+		{
+
+		}
+
+		public void DecreasePrice(decimal amount)
+		{
+			Price -= amount;
+		}
 	}
 }
