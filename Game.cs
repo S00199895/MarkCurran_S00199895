@@ -25,4 +25,9 @@ namespace MarkCurran_S00199895
 			Price -= amount;
 		}
 	}
+
+	class GameData
+	{
+
+	}
 }
